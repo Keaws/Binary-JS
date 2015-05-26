@@ -28,10 +28,9 @@ Student.prototype = new Man();
 
 function Student(name, age){
 	Man.call(this, name, age);
-}
-
-Student.prototype.study = function(){
-	console.log(this.name + ' is studying');
+	this.study = function() {
+		console.log(this.name + ' is studying');
+	};
 };
 
 var man = new Man('Joe', 30);
@@ -81,3 +80,23 @@ console.log(student.name);	//Mary
 console.log(student.age);	//20
 student.live();	//Mary is living!
 student.study();	//Mary is studying
+
+
+
+//ducktype()
+function duckType(object){
+	if (object.hasOwnProperty('study')) return 'student';
+	else return 'man';
+};
+
+console.log(duckType(stud));	//student
+console.log(duckType(man));	//man
+
+function duckTypeMod() {
+	var object = this;
+	if (this.hasOwnProperty('study')) return 'student';
+	else return 'man';
+};
+
+console.log(duckTypeMod.apply(mann));	//man
+console.log(duckTypeMod.call(student));	//student
