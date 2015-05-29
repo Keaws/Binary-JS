@@ -69,11 +69,11 @@ StudentObject.constructor = function(name, age) {
 	return this;
 };
 
-var mann = Object.create(ManObject).constructor('Kevin', 23);
-console.log(mann.name);	//Kevin
-console.log(mann.age);	//23
-mann.live();	//Kevin is living!
-//mann.study();	//undefined is not a function
+var human = Object.create(ManObject).constructor('Kevin', 23);
+console.log(human.name);	//Kevin
+console.log(human.age);	//23
+human.live();	//Kevin is living!
+//human.study();	//undefined is not a function
 
 var student = Object.create(StudentObject).constructor('Mary', 20);
 console.log(student.name);	//Mary
@@ -98,5 +98,5 @@ function duckTypeMod() {
 	else return 'man';
 };
 
-console.log(duckTypeMod.apply(mann));	//man
+console.log(duckTypeMod.apply(human));	//man
 console.log(duckTypeMod.call(student));	//student
