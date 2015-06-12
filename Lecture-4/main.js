@@ -20,8 +20,8 @@ $(document).ready(function () {
             var input = $('#goodsText').val();
             $('#goodsList').append('<li> <input type="checkbox" class="toggle" />' +
                 '<span class="display">' + input + '</span>' +
-                '<input type="text" class="edit" style="display:none" />' +
-                '<button class="delete" style="color:red">X</button></li>');
+                '<input type="text" class="edit"/>' +
+                '<a class="delete">x</a></li>');
             $('#goodsText').val('');
         }
     });
@@ -73,29 +73,9 @@ $(document).ready(function () {
         }
     });
 
-    //show delete button on mouseenter
-/*    $(document).on('mouseover', 'li span', function(){
-        console.log('hhh');
-        $(this).siblings('.delete').show();
-    }, function(){
-        $(this).siblings('.delete').hide();
-    });*/
-
     $(document).on('mouseenter', 'li span', function () {
         $(this).siblings('.delete').fadeIn();
     }).on('mouseleave', 'li span', function () {
         $(this).siblings('.delete').fadeOut();
     });
-
-/*    $(document).on('mouseenter', '#goodsText',
-        function () {
-            console.log('123');
-        }
-    );
-
-    $(document).on('mouseleave', '#goodsText',
-        function () {
-            console.log('123');
-        }
-    );*/
 });

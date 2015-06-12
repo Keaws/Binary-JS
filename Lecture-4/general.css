@@ -5,9 +5,14 @@
 
 .delete {
     display: none;
-    width: 20px;
+    color: red;
+    cursor: pointer;
 }
 
 li {
     margin: 5px 0;
+}
+
+.edit {
+    display: none;
 }
