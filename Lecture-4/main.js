@@ -1,7 +1,8 @@
 /**
  * Created by Vitalii Kalchuk on 11.06.2015.
  */
-var ENTER_KEY = 13;
+var ENTER_KEY = 13,
+    ESACPE_KEY = 27;
 
 $(document).ready(function () {
     //remove checkmark on page refresh
@@ -14,8 +15,10 @@ $(document).ready(function () {
     $('#goodsText').keypress(function (e) {
         if (e.which === ENTER_KEY && $('#goodsText').val() !== '') {
             var input = $('#goodsText').val();
-            $('#goodsList').append('<li> <input type="checkbox" class="toggle" /><span>' +
-                input + '</span><button class="delete" style="color:red">X</button></li>');
+            $('#goodsList').append('<li> <input type="checkbox" class="toggle" />' +
+                '<span class="display">' + input + '</span>' +
+                '<input type="text" class="edit" style="display:none" />' +
+                '<button class="delete" style="color:red">X</button></li>');
             $('#goodsText').val('');
         }
     });
@@ -53,19 +56,19 @@ $(document).ready(function () {
     });
 
     //edit item
+    var originalText;
     $(document).on('dblclick', 'li span', function () {
-        var $liToEdit = $(this).closest('li span');
-        $liToEdit.addClass('edititng');
-        var textToEdit = $liToEdit.html();
-        $('#goodsText').val(textToEdit);
-        $('#goodsText').focus();
+        originalText = $(this).text();
+        console.log(originalText);
+        $(this).hide().siblings(".edit").show().val($(this).text()).focus();
+    });
 
-        $('#goodsText').keypress(function (e) {
-            if (e.which === ENTER_KEY) {
-                var input = $('#goodsText').val();
-                $liToEdit.val(input);
-            }
-        });
+    $(document).on('keyup', '.edit', function(e) {
+        if (e.which === ENTER_KEY && $('#edit').val() !== '') {
+            $(this).hide().siblings(".display").show().text($(this).val());
+        } else if (e.which === ESACPE_KEY) {
+            $(this).hide().siblings(".display").show().text(originalText);
+        }
     });
 
 });
