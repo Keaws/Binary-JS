@@ -20,8 +20,8 @@ $(document).ready(function () {
             var input = $('#goodsText').val();
             $('#goodsList').append('<li> <input type="checkbox" class="toggle" />' +
                 '<span class="display">' + input + '</span>' +
-                '<input type="text" class="edit"/>' +
-                '<a class="delete">x</a></li>');
+                '<input type="text" class="edit" maxlength="15"/>' +
+                '<button class="delete">x</button></li>');
             $('#goodsText').val('');
         }
     });
@@ -73,6 +73,7 @@ $(document).ready(function () {
         }
     });
 
+    //show delete button
     $(document).on('mouseenter', 'li span', function () {
         $(this).siblings('.delete').fadeIn();
     }).on('mouseleave', 'li span', function () {
