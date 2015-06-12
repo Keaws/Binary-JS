@@ -4,28 +4,29 @@
 var ENTER_KEY = 13;
 
 $(document).ready(function() {
-
     //add item
     $('#goodsText').keypress(function(e) {
         if (e.which === ENTER_KEY && $('#goodsText').val() !== '') {
             var input = $('#goodsText').val();
-            $('#goodsList').append('<li> <input type="checkbox" class="toggle" />' +
-                input + '<button class="delete" style="color:red">X</button></li>');
+            $('#goodsList').append('<li> <input type="checkbox" class="toggle" /><span>' +
+                input + '</span><button class="delete" style="color:red">X</button></li>');
             $('#goodsText').val('');
         }
     });
 
-    // delete item
+    //delete item
     $(document).on('click', '.delete', function() {
         $(this).closest('li').remove();
     });
 
     //strikethrough item
-    $(document).on('click', '.toggle', function() {
-        if($(".toggle").is(':checked'))
+    $(document).on('change', '.toggle', function() {
+        if(this.checked) {
             $(this).closest('li').addClass('strikethrough');
-        else
+        }
+        else {
             $(this).closest('li').removeClass('strikethrough');
+        }
     });
 
     //strikethrough all
@@ -38,4 +39,13 @@ $(document).ready(function() {
             $('li').removeClass('strikethrough');
         }                
     });
+
+    //delete all strikethrough
+    $('#strikeDel').click(function() {
+        $('li.strikethrough').remove();
+        $('#strike').prop("checked", false);
+    });
+
+    //remove checkmark when page is refreshed
+    $('#strike').prop("checked", false);
 });
