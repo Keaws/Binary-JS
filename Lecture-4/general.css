@@ -1,3 +1,13 @@
 .strikethrough {
     text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.delete {
+    display: none;
+    width: 20px;
+}
+
+li {
+    margin: 5px 0;
 }

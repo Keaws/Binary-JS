@@ -11,6 +11,9 @@ $(document).ready(function () {
     //clear input field on page refresh
     $('#goodsText').val('');
 
+    //input focus on page refresh
+    $('#goodsText').focus();
+
     //add item
     $('#goodsText').keypress(function (e) {
         if (e.which === ENTER_KEY && $('#goodsText').val() !== '') {
@@ -59,7 +62,6 @@ $(document).ready(function () {
     var originalText;
     $(document).on('dblclick', 'li span', function () {
         originalText = $(this).text();
-        console.log(originalText);
         $(this).hide().siblings(".edit").show().val($(this).text()).focus();
     });
 
@@ -71,4 +73,29 @@ $(document).ready(function () {
         }
     });
 
+    //show delete button on mouseenter
+/*    $(document).on('mouseover', 'li span', function(){
+        console.log('hhh');
+        $(this).siblings('.delete').show();
+    }, function(){
+        $(this).siblings('.delete').hide();
+    });*/
+
+    $(document).on('mouseenter', 'li span', function () {
+        $(this).siblings('.delete').fadeIn();
+    }).on('mouseleave', 'li span', function () {
+        $(this).siblings('.delete').fadeOut();
+    });
+
+/*    $(document).on('mouseenter', '#goodsText',
+        function () {
+            console.log('123');
+        }
+    );
+
+    $(document).on('mouseleave', '#goodsText',
+        function () {
+            console.log('123');
+        }
+    );*/
 });
