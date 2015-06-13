@@ -2,16 +2,16 @@
  * Created by Vitalii Kalchuk on 11.06.2015.
  */
 var ENTER_KEY = 13,
-    ESACPE_KEY = 27;
+    ESCAPE_KEY = 27;
 
 $(document).ready(function () {
-    //remove checkmark on page refresh
+    //remove checkmark on page load
     $('#strike').prop("checked", false);
 
-    //clear input field on page refresh
+    //clear input field on page load
     $('#goodsText').val('');
 
-    //input focus on page refresh
+    //input focus on page load
     $('#goodsText').focus();
 
     //add item
@@ -19,9 +19,9 @@ $(document).ready(function () {
         if (e.which === ENTER_KEY && $('#goodsText').val() !== '') {
             var input = $('#goodsText').val();
             $('#goodsList').append('<li> <input type="checkbox" class="toggle" />' +
-                '<span class="display">' + input + '</span>' +
+                '<label class="display">' + input + '</label>' +
                 '<input type="text" class="edit" maxlength="15"/>' +
-                '<button class="delete">x</button></li>');
+                '<a class="delete"></a></li>');
             $('#goodsText').val('');
         }
     });
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
     //edit item
     var originalText;
-    $(document).on('dblclick', 'li span', function () {
+    $(document).on('dblclick', 'li label', function () {
         originalText = $(this).text();
         $(this).hide().siblings(".edit").show().val($(this).text()).focus();
     });
@@ -68,15 +68,15 @@ $(document).ready(function () {
     $(document).on('keyup', '.edit', function(e) {
         if (e.which === ENTER_KEY && $('#edit').val() !== '') {
             $(this).hide().siblings(".display").show().text($(this).val());
-        } else if (e.which === ESACPE_KEY) {
+        } else if (e.which === ESCAPE_KEY) {
             $(this).hide().siblings(".display").show().text(originalText);
         }
     });
 
     //show delete button
-    $(document).on('mouseenter', 'li span', function () {
+/*    $(document).on('mouseenter', 'li label', function () {
         $(this).siblings('.delete').fadeIn();
-    }).on('mouseleave', 'li span', function () {
+    }).on('mouseleave', 'li label', function () {
         $(this).siblings('.delete').fadeOut();
-    });
+    });*/
 });
