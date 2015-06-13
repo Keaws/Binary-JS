@@ -1,47 +1,8 @@
-.strikethrough {
-    text-decoration: line-through;
-    opacity: 0.5;
-}
-
-.edit {
-    display: none;
-}
-
-#goodsList {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
-}
-#goodsList li {
-    padding: 18px 20px 18px 0;
-    position: relative;
-    font-size: 24px;
-    border-bottom: 1px solid #cccccc;
-}
-#goodsList li:last-child {
-    border-bottom: none;
-}
-#goodsList .delete {
-    position: absolute;
-    right: 5px;
-    top: 20px;
-    display: none;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    background: url(deleteBtn.png) no-repeat;
-}
-#goodsList li:hover .delete {
-    display: block;
-}
-#goodsList .delete:hover {
-    background-position: 0 -20px;
-}
-
 html, body {
     margin: 0;
     padding: 0;
 }
+
 body {
     font: 14px "Monaco", Monaco, Arial, sans-serif;
     line-height: 1.4em;
@@ -51,7 +12,8 @@ body {
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
 }
-#todoapp {
+
+#goodsapp {
     background: #fff;
     width: 520px;
     padding: 20px;
@@ -67,4 +29,49 @@ body {
     -ms-border-radius: 0 0 5px 5px;
     -o-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.edit {
+    display: none;
+}
+
+#goodsList {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+#goodsList li {
+    padding: 18px 20px 18px 0;
+    position: relative;
+    font-size: 24px;
+    border-bottom: 1px solid #cccccc;
+}
+
+#goodsList li:last-child {
+    border-bottom: none;
+}
+
+#goodsList .delete {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(deleteBtn.png) no-repeat;
+}
+
+#goodsList li:hover .delete {
+    display: block;
+}
+
+#goodsList .delete:hover {
+    background-position: 0 -20px;
 }
