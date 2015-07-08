@@ -8,7 +8,7 @@ var Controller = function (data) {
 
 Controller.prototype.init = function () {
     var element = '#' + this.elementId;
-    $(element).append(this.render());
+    $(element).html(this.render());
 };
 
 Controller.prototype.click = function (element) {
@@ -17,3 +17,10 @@ Controller.prototype.click = function (element) {
     this[fnName]();
 };
 
+/*Controller.prototype.checkChanged = function () {
+    if (this.model.changed == true) {
+        this.render();
+        this.model.changed = false;
+    }
+    setTimeout(this.checkChanged, 100);
+};*/

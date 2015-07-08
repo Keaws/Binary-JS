@@ -27,10 +27,6 @@
             }
         });
 
-/*        var click = function() {
-            alert(1);
-        };*/
-
         StudentController = new Controller({
             model: Student,
             elementId: 'student-container',
@@ -47,19 +43,17 @@
         });
 
         StudentController.init();
+        //StudentController.checkChanged();
 
-/*        $.each(StudentController.clickHandlers, function (key, value) {
-            $(key).on('click', StudentController.updateExams);
-        });*/
-
-/*        function checkChanged() {
+        function checkChanged() {
             if (Student.changed == true) {
-                Student.changed == false;
+                Student.changed = false;
+                StudentController.init();
             }
             setTimeout(checkChanged, 100);
         }
 
-        checkChanged();*/
+        checkChanged();
     });
 </script>
 </body>
