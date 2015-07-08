@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+<div id="student-container"></div>
+
+<script type="text/javascript" src="model.js"></script>
+<script type="text/javascript" src="controller.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<script>
+    var StudentController;
+
+    $(document).ready(function () {
+        var Student = new Model({
+            name: 'Piotr',
+            age: 22,
+            year: 5,
+            examsTaken: 2,
+            takeExam: function () {
+                this.examsTaken++;
+                this.changed = true;
+            }
+        });
+
+/*        var click = function() {
+            alert(1);
+        };*/
+
+        StudentController = new Controller({
+            model: Student,
+            elementId: 'student-container',
+            render: function () {
+                return '<span>' + this.model.name + '</span><button id="student-exams-button" onclick="StudentController.click(this)">Increase exams taken</button>' +
+                        '<span>Exams taken: ' + this.model.examsTaken + '</span>';
+            },
+            clickHandlers: {
+                '#student-exams-button': 'updateExams'
+            },
+            updateExams: function(){
+                this.model.takeExam();
+            }
+        });
+
+        StudentController.init();
+
+/*        $.each(StudentController.clickHandlers, function (key, value) {
+            $(key).on('click', StudentController.updateExams);
+        });*/
+
+/*        function checkChanged() {
+            if (Student.changed == true) {
+                Student.changed == false;
+            }
+            setTimeout(checkChanged, 100);
+        }
+
+        checkChanged();*/
+    });
+</script>
+</body>
+
+</html> 
