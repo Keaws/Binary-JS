@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Angular List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body ng-app='app'>
+<div class='lists'>
+    <div ng-controller='GoodsController' class='goods'>
+        <h1>Goods ({{goods.length}})</h1>
+        <button ng-click='toggleGoods()'>Toggle Goods</button>
+
+        <form ng-submit="addItem()">
+            <input type="text" ng-model="itemName" size="30" maxlength='15' placeholder="Item name...">
+            <input class="btn-primary" type="submit" value="Add">
+        </form>
+
+        <div class='goods-list' ng-show='showGoods'>
+            <input type='text' ng-model='searchGoods' placeholder="Search item...">
+            <hr>
+            <div ng-repeat='item in goods | filter: searchGoods track by item.name'>
+                <h3>{{item.name}} {{item.price | currency}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller='CustomersController' class='customers'>
+        <h1>Customers ({{customers.length}})</h1>
+
+        <button ng-click='toggleCustomers()'>Toggle Customers</button>
+
+        <form ng-submit="addCustomer()">
+            <input id='customerName' type="text" ng-model='customerName' maxlength='12' size='15'
+                   placeholder='Customer name...'>
+            <input type='text' ng-model='customerCity' size='15' maxlength='12' placeholder='Customer city...'>
+            <input type='text' ng-model='customerAvatar' size='20' placeholder='Customer avatar URL...'>
+            <input class='btn-primary' type='submit' value='Add'>
+        </form>
+
+        <div class='customers-list' ng-show='showCustomers'>
+            <input type='text' ng-model='searchCustomer' placeholder="Search customer by name...">
+            <hr>
+            <div class='customer'
+                 ng-repeat='customer in customers | filter: { name: searchCustomer } track by customer.name'>
+                <img class="avatar" ng-src="{{customer.avatar}}" alt="avatar">
+                <button class='delete-btn' ng-click='deleteCustomer($index)'>Delete</button>
+                <h3>Пользователь: {{customer.name | uppercase}}, {{customer.age}} years old from {{customer.city}}</h3>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript" src='app.js'></script>
+</html>

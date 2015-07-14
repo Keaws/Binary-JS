@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+}
+
+.goods, .customers {
+    height: 100%;
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.goods {
+    background: grey;
+}
+
+.customers {
+    background: yellow;
+}
+
+button, .btn-primary {
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 25px;
+    float: left;
+    margin-left: 25px;
+}
+
+.delete-btn {
+    float: right;
+    margin-right: 20px;
+}
