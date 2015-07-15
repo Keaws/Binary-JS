@@ -1,0 +1,22 @@
+ul {
+    width: 50%;
+    margin: auto;
+    list-style-type: none;
+}
+
+li {
+    text-align: center;
+}
+
+.large-img-container {
+    text-align: center;
+    visibility: hidden;
+    position: fixed;
+    z-index: 100;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(100,100,100, 0.5);
+}
+
+.large-img-container img {
+	margin-top: 50px;
+}
