@@ -19,10 +19,11 @@
 function Man(name, age) {
 	this.name = name;
 	this.age = age;
-	this.live = function() {
-		console.log(this.name + ' is living!');
-	};
-}
+};
+
+Man.prototype.live = function () {
+	console.log(this.name + ' is living!');
+};
 
 Student.prototype = new Man();
 
@@ -54,7 +55,7 @@ var ManObject = {
 		this.age = age;
 		this.live = function() {
 			console.log(this.name + ' is living!');
-		}
+		};
 		return this;
 	}
 };
