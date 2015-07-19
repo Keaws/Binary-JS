@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Ukraine",
+    "hotels": [
+      {
+        "id": 1,
+        "name": "River Palace",
+        "info": "River Palace Info"
+      },
+      {
+        "id": 2,
+        "name": "UA hotel",
+        "info": "UA hotel info"
+      }
+    ]
+  },
+
+  {
+    "id": 2,
+    "name": "Poland",
+    "hotels": [
+      {
+        "id": 1,
+        "name": "Warsaw hotel",
+        "info": "Warsaw hotel Info"
+      },
+      {
+        "id": 2,
+        "name": "PL",
+        "info": "PL info"
+      }
+    ]
+  }
+]
+
+exports = module.exports = data;
