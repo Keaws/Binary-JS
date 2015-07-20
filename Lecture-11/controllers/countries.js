@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 exports.getCountries = function(req, res){
   Countries.find({},function(err, results) {
-  	console.log(results);
     return res.send(results);
   });
 };
@@ -11,12 +10,28 @@ exports.getCountries = function(req, res){
 exports.getHotels = function(req, res){
   var id = req.params.id;
   Countries.find({'_id':id},function(err, results) {
-  	//console.log(results[0].hotels);
     return res.send(results[0].hotels);
   });
- /* Countries.findOne({'_id':id},function(err, result) {
-    return res.send(result);
-  });*/
+};
+
+exports.getHotelInfo = function(req, res) {
+	var countryId = req.params.id,
+		hotelId = req.params.hid;
+
+	Countries.find({'_id':countryId, hotels: {$elemMatch: {_id: hotelId}}}, function(err, results) {
+		if (err) return console.log(err);
+
+		var resultHotels = results[0].hotels,
+			hotel;
+
+		for (var i = 0; i < results[0].hotels.length; i++) {
+			if (resultHotels[i]._id == hotelId) {
+				hotel = resultHotels[i];
+				break;
+			}
+		}
+    	return res.send(hotel);
+  	});
 };
 
 exports.addCountry = function(req, res) {
@@ -26,12 +41,20 @@ exports.addCountry = function(req, res) {
   });
 };
 
+exports.addHotel = function(req, res) {
+	var id = req.params.id,
+		hotelsUpd = req.body;
+
+	Countries.findByIdAndUpdate({'_id':id}, {$push: {hotels: hotelsUpd}}, function(err, results) {
+      	return res.send(202);
+  	});
+ };
+
 exports.update = function(req, res) {
   var id = req.params.id;
   var updates = req.body;
 
-  Countries.update({"_id":id}, req.body,
-    function (err, numberAffected) {
+  Countries.update({"_id":id}, req.body, function (err, numberAffected) {
       if (err) return console.log(err);
       console.log('Updated %d countries', numberAffected);
       return res.send(202);
