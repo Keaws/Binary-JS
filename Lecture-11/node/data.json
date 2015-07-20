@@ -21,17 +21,15 @@
     "name": "Poland",
     "hotels": [
       {
-        "id": 1,
+        "id": 3,
         "name": "Warsaw hotel",
         "info": "Warsaw hotel Info"
       },
       {
-        "id": 2,
+        "id": 4,
         "name": "PL",
         "info": "PL info"
       }
     ]
   }
 ]
-
-exports = module.exports = data;

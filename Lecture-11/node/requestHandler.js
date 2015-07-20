@@ -1,8 +1,8 @@
+//NOT NEEDED WITH EXPRESS
+
 exports = module.exports = requestHandler;
 
 var dataHandler = require("./dataHandler.js");
-
-//var d = new dataHandler();
 
 function requestHandler(request, response){
 	if(request.url == '/countries') {

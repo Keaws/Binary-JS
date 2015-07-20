@@ -1,5 +1,3 @@
-//exports = module.exports = dataHandler;
-
 var json = require("../data.json"),
 	data = JSON.parse(JSON.stringify(json));
 
@@ -8,23 +6,41 @@ function getCountries() {
 	for (var i = 0; i < data.length; i++) 
 		countryNames[i] = data[i].name;
 
-	return JSON.stringify(countryNames);
+	return countryNames;
 };
 
 function getHotels(countryId) {
-	var hotelsNames = [],
-	countryPosition,
-	i;
+	var hotelsNames = [];
 
-	for (i = 0; i < data.length; i++)
-		if (data[i].id == countryId) countryPosition = i;
-	for (i = 0; i < data[countryPosition].hotels.length; i++) 
-		hotelsNames[i] = data[countryPosition].hotels.name;
-
-	return JSON.stringify(hotelsNames);
+	for (var i = 0; i < data.length; i++)
+		if (data[i].id == countryId) {
+			for (var j = 0; j < data[i].hotels.length; j++) 
+				hotelsNames[j] = data[i].hotels[j].name;
+		}
+	
+	return hotelsNames;
 };
+
+function getHotelInfo(countryId, hotelId) {
+	var hotelInfo = '';
+
+	for (var i = 0; i < data.length; i++)
+		if (data[i].id == countryId) {
+			for (var j = 0; j < data[i].hotels.length; j++)
+				if (data[i].hotels[j].id == hotelId) 
+				hotelInfo = data[i].hotels[j].info;
+		}
+
+	return hotelInfo;
+
+}
+
+function addCountry(country) {
+	data.push(country);
+}
 
 module.exports = {
 	getCountries : getCountries,
-	getHotels: getHotels
+	getHotels: getHotels,
+	getHotelInfo: getHotelInfo
 };
